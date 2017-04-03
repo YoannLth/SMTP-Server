@@ -1,0 +1,42 @@
+
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(ÍããÌ
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(òåô¹
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(ÂòŠ¯
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(Ì»†Ô
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(Æ¸·îıÿÿÿÿ
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(§÷»¢øÿÿÿÿ
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(ÀÖ·®
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(…—¤ıÿÿÿÿ
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(¹Ü«›
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(‰şçñıÿÿÿÿ
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(·¾àĞıÿÿÿÿ
+T
+squid:S106";Replace this usage of System.out or System.err by a logger.(ù„Øµûÿÿÿÿ
+N
+squid:S106";Replace this usage of System.out or System.err by a logger.(Ùİõg
+gsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(«ñ®¶
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«ñ®¶
+:squid:S1166"%Either log or rethrow this exception.(«Åğ¥
+lsquid:S00117"VRename this local variable name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ŠÆÔ
+squid:S1151"jReduce this switch case number of lines from 13 to at most 5, for example by extracting code into methods.(ß˜³²
+~squid:S1151"jReduce this switch case number of lines from 11 to at most 5, for example by extracting code into methods.(ØöøS
+„squid:S1151"jReduce this switch case number of lines from 11 to at most 5, for example by extracting code into methods.(æ›İõûÿÿÿÿ
+squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(Æ†ºõ
+„squid:S1151"jReduce this switch case number of lines from 14 to at most 5, for example by extracting code into methods.(Í¯ÏŠÿÿÿÿÿ
+„squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(×¢ìıÿÿÿÿ
+„squid:S1151"jReduce this switch case number of lines from 14 to at most 5, for example by extracting code into methods.(½’ê˜ûÿÿÿÿ
+„squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(æúïüùÿÿÿÿ
+„squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(µÍÃ×úÿÿÿÿ
+~squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(†ÚŠb
+~squid:S1151"jReduce this switch case number of lines from 10 to at most 5, for example by extracting code into methods.(Õú—B
