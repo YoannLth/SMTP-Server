@@ -1,13 +1,0 @@
-
-Osquid:S1141"5Extract this nested try block into a separate method.(ç£êúÿÿÿÿ
-O
-squid:S106";Replace this usage of System.out or System.err by a logger.(¡šÊû
-Ksquid:S2692"10 is a valid index, but is ignored by this check.(é¿œÔıÿÿÿÿ
-O
-squid:S106";Replace this usage of System.out or System.err by a logger.(ùØË
-isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õ¤ ıÿÿÿÿ
-ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(çâîÀıÿÿÿÿ
-vsquid:S1450"\Remove the "socketFactory" field and declare it as a local variable in the relevant methods.(Ëˆ·Üÿÿÿÿÿ
-<squid:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
-O
-squid:S106";Replace this usage of System.out or System.err by a logger.(ŒûÍ
