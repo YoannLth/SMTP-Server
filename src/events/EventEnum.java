@@ -6,15 +6,10 @@ package events;
  */
 public enum EventEnum
 {
-    APOP,
-    STAT, 
-    LIST, 
-    DELE, 
-    QUIT,
-    RETR,
-    USER, 
-    PASS,
-    NOOP,
+    EHLO,
+    MAIL,
+    DATA,
     RSET,
-    TOP
+    RCPT,
+    QUIT
 }

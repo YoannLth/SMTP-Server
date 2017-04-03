@@ -8,10 +8,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import states.Autorisation;
-import states.Closed;
+
 import states.StateAnswer;
-import states.Update;
 import utils.Utils;
 
 /**
@@ -42,7 +40,6 @@ public class ThreadCommunication extends Thread{
     public ThreadCommunication(Socket s) 
     {
         replySocket = s;  
-        currentState = new Autorisation();
     }
 
     @Override
@@ -101,7 +98,7 @@ public class ThreadCommunication extends Thread{
     
     public boolean KeepCommunicationAlive()
     {
-        return !(currentState instanceof Update || currentState instanceof Closed);
+        return true;
     }
     
     public void SendServerIsReadyMessage()

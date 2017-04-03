@@ -11,8 +11,9 @@ package states;
  */
 public enum StateEnum
 {
-    AUTORISATION, 
-    TRANSACTION,
-    UPDATE,
+    AUTHORIZATION,
+    WAITING_MAIL,
+    WAITING_RCPT_OR_DATA,
+    DATA_RECEIVED,
     CLOSED
 }
