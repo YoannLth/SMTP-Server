@@ -5,6 +5,7 @@
  */
 package server;
 
+import events.EHLOEvent;
 import states.State;
 import events.EventEnum;
 import states.StateAnswer;
@@ -40,7 +41,10 @@ public class Manager
                 
         switch(command)
         {
-
+            case EHLO:
+                System.out.println("EHLO received");
+                response = currentState.launchEHLO(new EHLOEvent(message_split[1]));
+                break;
             
             default:
                 System.out.println("Switch case not handled yet");

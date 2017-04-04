@@ -9,7 +9,18 @@ package events;
  *
  * @author yannick
  */
-public class EHLOEvent
+public class EHLOEvent extends Event
 {
+    String domainName;
     
+    public EHLOEvent(String domain)
+    {
+        super(EventEnum.EHLO);
+        this.domainName = domain;
+    }
+
+    public String getDomainName()
+    {
+        return domainName;
+    }
 }
