@@ -5,10 +5,13 @@
  */
 package states;
 
-import events.EventEnum;
-
-import java.util.ArrayList;
-import java.util.List;
+import events.DATAEvent;
+import events.EHLOEvent;
+import events.MAILEvent;
+import events.PlainTextEvent;
+import events.QUITEvent;
+import events.RCPTEvent;
+import events.RSETEvent;
 
 /**
  *
@@ -27,4 +30,12 @@ public abstract class State
     {
         return this.currentState.toString();
     }
+    
+    public abstract StateAnswer launchEHLO(EHLOEvent ehlo);
+    public abstract StateAnswer launchMAIL(MAILEvent mail);
+    public abstract StateAnswer launchRCPT(RCPTEvent rcpt);
+    public abstract StateAnswer launchDATA(DATAEvent data);
+    public abstract StateAnswer launchPlainText(PlainTextEvent plainText);
+    public abstract StateAnswer launchRSET(RSETEvent rsets);
+    public abstract StateAnswer launchQUIT(QUITEvent quit);
 }
