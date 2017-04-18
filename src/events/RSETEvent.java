@@ -9,7 +9,10 @@ package events;
  *
  * @author yannick
  */
-public class RSETEvent
+public class RSETEvent extends Event
 {
-    
+    public RSETEvent()
+    {
+        super(EventEnum.RSET);
+    }
 }

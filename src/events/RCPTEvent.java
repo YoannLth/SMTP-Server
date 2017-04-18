@@ -9,7 +9,18 @@ package events;
  *
  * @author yannick
  */
-public class RCPTEvent
+public class RCPTEvent extends Event
 {
-    
+    public String receipient;
+
+    public RCPTEvent(String addressRcpt)
+    {
+        super(EventEnum.RCPT);
+        this.receipient = addressRcpt;
+    }
+
+    public String getReceipient()
+    {
+        return this.receipient;
+    }
 }

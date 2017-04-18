@@ -9,7 +9,10 @@ package events;
  *
  * @author yannick
  */
-public class QUITEvent
+public class QUITEvent extends Event
 {
-    
+    public QUITEvent()
+    {
+        super(EventEnum.QUIT);
+    }
 }

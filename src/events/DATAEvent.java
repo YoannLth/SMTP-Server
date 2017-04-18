@@ -9,7 +9,10 @@ package events;
  *
  * @author yannick
  */
-public class DATAEvent
+public class DATAEvent extends Event
 {
-    
+    public DATAEvent()
+    {
+        super(EventEnum.DATA);
+    }
 }

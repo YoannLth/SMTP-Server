@@ -11,5 +11,6 @@ public enum EventEnum
     DATA,
     RSET,
     RCPT,
+    PLAIN_TEXT,
     QUIT
 }

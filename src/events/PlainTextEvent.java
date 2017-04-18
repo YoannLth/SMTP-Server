@@ -9,7 +9,18 @@ package events;
  *
  * @author yannick
  */
-public class PlainTextEvent
+public class PlainTextEvent extends Event
 {
-    
+    private String text;
+
+    public PlainTextEvent(String text)
+    {
+        super(EventEnum.PLAIN_TEXT);
+        this.text = text;
+    }
+
+    public String getText()
+    {
+        return this.text;
+    }
 }

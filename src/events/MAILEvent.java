@@ -9,7 +9,18 @@ package events;
  *
  * @author yannick
  */
-public class MAILEvent
+public class MAILEvent extends Event
 {
-    
+    private String address;
+
+    public MAILEvent(String addressMail)
+    {
+        super(EventEnum.MAIL);
+        this.address = addressMail;
+    }
+
+    public String getAddress()
+    {
+        return this.address;
+    }
 }
