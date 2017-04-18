@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Mail;
 import model.User;
+import server.ThreadCommunication;
 import states.Closed;
 import states.StateAnswer;
 
@@ -38,6 +39,13 @@ public abstract class Utils
     public static StateAnswer GenerateQuitAnswer()
     {
         return new StateAnswer(new Closed(), "221 Bye");
+    }
+
+    public static void ResetBufferMemory()
+    {
+        ThreadCommunication.recipients.set(new ArrayList<String>());
+        ThreadCommunication.from.set("");
+        ThreadCommunication.mail.set("");
     }
 
     public static String GenerateHelpMessage()
