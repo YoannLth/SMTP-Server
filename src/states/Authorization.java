@@ -12,6 +12,7 @@ import events.PlainTextEvent;
 import events.QUITEvent;
 import events.RCPTEvent;
 import events.RSETEvent;
+import utils.Utils;
 
 /**
  *
@@ -77,7 +78,7 @@ public class Authorization extends State
     @Override
     public StateAnswer launchQUIT(QUITEvent quit)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateQuitAnswer();
     }
     
 }
