@@ -1,6 +1,8 @@
 package states;
 
 import events.*;
+import server.ThreadCommunication;
+import utils.Utils;
 
 /**
  * Created by yannick on 18/04/17.
@@ -39,18 +41,33 @@ public class DataReceived extends State
     @Override
     public StateAnswer launchPlainText(PlainTextEvent plainText)
     {
-        return null;
+        String answer = "";
+        State nextState = null;
+        if(plainText.getText().equals("."))
+        {
+            //ADD TO JSON THE MAIL
+            Utils.ResetBufferMemory();
+            answer = "250 OK";
+            nextState = new WaitingMail();
+        }
+        else
+        {
+            ThreadCommunication.mail.set(ThreadCommunication.mail.get()+plainText.getText());
+        }
+
+        return new StateAnswer(nextState, answer);
     }
 
     @Override
     public StateAnswer launchRSET(RSETEvent rsets)
     {
-        return null;
+        Utils.ResetBufferMemory();
+        return new StateAnswer(new WaitingMail(), "250 OK");
     }
 
     @Override
     public StateAnswer launchQUIT(QUITEvent quit)
     {
-        return null;
+        return Utils.GenerateQuitAnswer();
     }
 }

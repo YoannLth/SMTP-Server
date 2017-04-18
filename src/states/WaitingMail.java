@@ -1,6 +1,8 @@
 package states;
 
 import events.*;
+import server.ThreadCommunication;
+import utils.Utils;
 
 /**
  * Created by yannick on 18/04/17.
@@ -22,7 +24,8 @@ public class WaitingMail extends State
     @Override
     public StateAnswer launchMAIL(MAILEvent mail)
     {
-        return null;
+        ThreadCommunication.from.set(mail.getAddress());
+        return new StateAnswer(new WaitingRcptData(), "250 OK");
     }
 
     @Override
@@ -46,12 +49,13 @@ public class WaitingMail extends State
     @Override
     public StateAnswer launchRSET(RSETEvent rsets)
     {
-        return null;
+        Utils.ResetBufferMemory();
+        return new StateAnswer(null, "250 OK");
     }
 
     @Override
     public StateAnswer launchQUIT(QUITEvent quit)
     {
-        return null;
+        return Utils.GenerateQuitAnswer();
     }
 }

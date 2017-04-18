@@ -1,6 +1,8 @@
 package states;
 
 import events.*;
+import server.ThreadCommunication;
+import utils.Utils;
 
 /**
  * Created by yannick on 18/04/17.
@@ -27,13 +29,14 @@ public class WaitingRcptData extends State
     @Override
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
-        return null;
+        ThreadCommunication.recipients.get().add(rcpt.getReceipient());
+        return new StateAnswer(null, "250 OK");
     }
 
     @Override
     public StateAnswer launchDATA(DATAEvent data)
     {
-        return null;
+        return new StateAnswer(new DataReceived(), "354 End message with <CR><LF>.<CR><LF>");
     }
 
     @Override
@@ -45,12 +48,13 @@ public class WaitingRcptData extends State
     @Override
     public StateAnswer launchRSET(RSETEvent rsets)
     {
-        return null;
+        Utils.ResetBufferMemory();
+        return new StateAnswer(new WaitingMail(), "250 OK");
     }
 
     @Override
     public StateAnswer launchQUIT(QUITEvent quit)
     {
-        return null;
+        return Utils.GenerateQuitAnswer();
     }
 }
