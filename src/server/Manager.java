@@ -5,9 +5,8 @@
  */
 package server;
 
-import events.EHLOEvent;
+import events.*;
 import states.State;
-import events.EventEnum;
 import states.StateAnswer;
 import utils.Utils;
 
@@ -44,6 +43,31 @@ public class Manager
             case EHLO:
                 System.out.println("EHLO received");
                 response = currentState.launchEHLO(new EHLOEvent(message_split[1]));
+                break;
+
+            case MAIL:
+                System.out.println("MAIL received");
+                response = currentState.launchMAIL(new MAILEvent());
+                break;
+
+            case RCPT:
+                System.out.println("RCPT received");
+                response = currentState.launchRCPT(new RCPTEvent());
+                break;
+
+            case DATA:
+                System.out.println("DATA received");
+                response = currentState.launchDATA(new DATAEvent());
+                break;
+
+            case RSET:
+                System.out.println("RSET received");
+                response = currentState.launchRSET(new RSETEvent());
+                break;
+
+            case QUIT:
+                System.out.println("QUIT received");
+                response = currentState.launchQUIT(new QUITEvent());
                 break;
             
             default:
