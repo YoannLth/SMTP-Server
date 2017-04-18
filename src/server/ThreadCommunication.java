@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,20 +21,28 @@ public class ThreadCommunication extends Thread{
     private Socket replySocket = null;
     private states.State currentState;
     private Manager manager;
-    public static ThreadLocal<String> currentTimestamp = new ThreadLocal<String>()
-    {
+    
+    public static ThreadLocal<String> from = new ThreadLocal<String>(){
         @Override
         protected String initialValue()
         {
             return "";
         }
     };
-    
-    public static ThreadLocal<String> currentUser = new ThreadLocal<String>(){
+
+    public static ThreadLocal<String> mail = new ThreadLocal<String>(){
         @Override
         protected String initialValue()
         {
             return "";
+        }
+    };
+
+    public static ThreadLocal<ArrayList<String>> recipients = new ThreadLocal<ArrayList<String>>(){
+        @Override
+        protected ArrayList<String> initialValue()
+        {
+            return new ArrayList<>();
         }
     };
 
@@ -103,7 +112,6 @@ public class ThreadCommunication extends Thread{
     
     public void SendServerIsReadyMessage()
     {
-        ThreadCommunication.currentTimestamp.set(String.format("<%s>", Utils.GetCurrentTimeStamp()));
         this.SendMessage("220 SMTP Ready\r\n");
     }
     
