@@ -42,32 +42,74 @@ public class Manager
         {
             case EHLO:
                 System.out.println("EHLO received");
-                response = currentState.launchEHLO(new EHLOEvent(message_split[1]));
+                if(message_split.length == 2)
+                {
+                    response = currentState.launchEHLO(new EHLOEvent(message_split[1]));
+                }
+                else
+                {
+                    returnedMessage = "EHLO take one argument";
+                }
                 break;
 
             case MAIL:
                 System.out.println("MAIL received");
-                response = currentState.launchMAIL(new MAILEvent());
+                if(message_split.length == 2)
+                {
+                    response = currentState.launchMAIL(new MAILEvent(message_split[1]));
+                }
+                else
+                {
+                    returnedMessage = "MAIL take one argument";
+                }
                 break;
 
             case RCPT:
                 System.out.println("RCPT received");
-                response = currentState.launchRCPT(new RCPTEvent());
+                if(message_split.length == 2)
+                {
+                    response = currentState.launchRCPT(new RCPTEvent(message_split[1]));
+                }
+                else
+                {
+                    returnedMessage = "RCPT take one argument";
+                }
                 break;
 
             case DATA:
                 System.out.println("DATA received");
-                response = currentState.launchDATA(new DATAEvent());
+                if(message_split.length == 1)
+                {
+                    response = currentState.launchDATA(new DATAEvent());
+                }
+                else
+                {
+                    returnedMessage = "DATA take no argument";
+                }
                 break;
 
             case RSET:
                 System.out.println("RSET received");
-                response = currentState.launchRSET(new RSETEvent());
+                if(message_split.length == 1)
+                {
+                    response = currentState.launchRSET(new RSETEvent());
+                }
+                else
+                {
+                    returnedMessage = "RSET take no argument";
+                }
                 break;
 
             case QUIT:
                 System.out.println("QUIT received");
-                response = currentState.launchQUIT(new QUITEvent());
+                if(message_split.length == 1)
+                {
+                    response = currentState.launchQUIT(new QUITEvent());
+                }
+                else
+                {
+                    returnedMessage = "QUIT take no argument";
+                }
                 break;
             
             default:
