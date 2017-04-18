@@ -20,7 +20,7 @@ import events.RSETEvent;
 public class Authorization extends State
 {
 
-    public Authorization(StateEnum state)
+    public Authorization()
     {
         super(StateEnum.AUTHORIZATION);
     }
@@ -34,7 +34,7 @@ public class Authorization extends State
         if(ehlo.getDomainName().equals(domainName))
         {
             answer = ("250 "+domainName+" Hello");
-            //nextState = new WaitingMail(); // <---- TO UNCOMMENT WHEN CREATING WAITING MAIL STATE
+            nextState = new WaitingMail();
         }
         else
         {
