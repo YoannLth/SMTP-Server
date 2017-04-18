@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Mail;
 import model.User;
+import states.Closed;
+import states.StateAnswer;
 
 /**
  *
@@ -31,6 +33,11 @@ public abstract class Utils
             }
         }
         return false;
+    }
+
+    public static StateAnswer GenerateQuitAnswer()
+    {
+        return new StateAnswer(new Closed(), "221 Bye");
     }
 
     public static String GenerateHelpMessage()
