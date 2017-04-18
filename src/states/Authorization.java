@@ -42,7 +42,7 @@ public class Authorization extends State
             answer = "ERROR";//PUT ERROR CODE INSTEAD OF ERROR
         }
         
-        return new StateAnswer(null, answer);
+        return new StateAnswer(nextState, answer);
     }
 
     @Override
