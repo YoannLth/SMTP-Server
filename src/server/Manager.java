@@ -8,6 +8,7 @@ package server;
 import events.*;
 import states.State;
 import states.StateAnswer;
+import states.StateEnum;
 import utils.Utils;
 
 /**
@@ -117,8 +118,15 @@ public class Manager
                 break;
             
             default:
-                System.out.println("Switch case not handled yet");
-                returnedMessage = Utils.GenerateHelpMessage();
+                if(currentState.equals(StateEnum.DATA_RECEIVED))
+                {
+                    response = currentState.launchPlainText(new PlainTextEvent(receivedMessage));
+                }
+                else
+                {
+                    System.out.println("Switch case not handled yet");
+                    returnedMessage = Utils.GenerateHelpMessage();
+                }
                 break;
         }
         
