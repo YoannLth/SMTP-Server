@@ -43,7 +43,7 @@ public class DataReceived extends State
     {
         String answer = "";
         State nextState = null;
-        if(plainText.getText().equals("."))
+        if(plainText.getText().equals(".\r\n"))
         {
             Utils.WriteNewMailToJSON();
             Utils.ResetBufferMemory();
@@ -57,7 +57,10 @@ public class DataReceived extends State
             String[] messageSplit = messageReceived.split(" ");
             if(messageSplit[0].equals("Date:"))
             {
+                String[] test  = messageReceived.split(":");
+                System.out.println(test);
                 ThreadCommunication.mail.get().setDate(messageReceived.split("Date: ")[0]);
+                System.out.println(ThreadCommunication.mail.get().getDate());
             }
             else if(messageSplit[0].equals("Subject:"))
             {
