@@ -54,9 +54,11 @@ public class Manager
 
             case MAIL:
                 System.out.println("MAIL received");
-                if(message_split.length == 2)
+                if(message_split.length == 3)
                 {
-                    response = currentState.launchMAIL(new MAILEvent(message_split[1]));
+                    String from = message_split[2].substring(1, message_split[2].length()-2);
+                    System.out.println("FROM: "+from);
+                    response = currentState.launchMAIL(new MAILEvent(from));
                 }
                 else
                 {
