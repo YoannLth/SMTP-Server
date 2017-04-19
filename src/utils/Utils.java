@@ -78,7 +78,7 @@ public abstract class Utils
     {
         ThreadCommunication.recipients.set(new ArrayList());
         ThreadCommunication.from.set("");
-        ThreadCommunication.mail.set(null);
+        ThreadCommunication.mail.set(new Mail());
     }
 
     public static String GenerateHelpMessage()

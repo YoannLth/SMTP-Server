@@ -25,15 +25,14 @@ public class Manager
         //and what are the args
         String[] message_split = receivedMessage.split(" ");
         EventEnum command;
-        
+
         try
         {
             command = EventEnum.valueOf(message_split[0].toUpperCase());
         }
         catch(IllegalArgumentException e)
         {
-            //Envoyer ERR
-            return new StateAnswer(null, Utils.GenerateHelpMessage());
+            command = EventEnum.PLAIN_TEXT;
         }
         
         StateAnswer response = null;
@@ -117,16 +116,8 @@ public class Manager
                 }
                 break;
             
-            default:
-                if(currentState.equals(StateEnum.DATA_RECEIVED))
-                {
-                    response = currentState.launchPlainText(new PlainTextEvent(receivedMessage));
-                }
-                else
-                {
-                    System.out.println("Switch case not handled yet");
-                    returnedMessage = Utils.GenerateHelpMessage();
-                }
+            case PLAIN_TEXT:
+                response = currentState.launchPlainText(new PlainTextEvent(receivedMessage));
                 break;
         }
         

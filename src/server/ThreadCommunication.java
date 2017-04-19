@@ -36,7 +36,7 @@ public class ThreadCommunication extends Thread{
         @Override
         protected Mail initialValue()
         {
-            return null;
+            return new Mail();
         }
     };
 

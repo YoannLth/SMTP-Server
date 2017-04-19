@@ -53,14 +53,15 @@ public class DataReceived extends State
         else
         {
             String messageReceived = plainText.getText();
+            System.out.println(messageReceived);
             String[] messageSplit = messageReceived.split(" ");
             if(messageSplit[0].equals("Date:"))
             {
-                ThreadCommunication.mail.get().setDate(messageReceived.split("Date: ")[1]);
+                ThreadCommunication.mail.get().setDate(messageReceived.split("Date: ")[0]);
             }
             else if(messageSplit[0].equals("Subject:"))
             {
-                ThreadCommunication.mail.get().setDate(messageReceived.split("Subject: ")[1]);
+                ThreadCommunication.mail.get().setDate(messageReceived.split("Subject: ")[0]);
             }
             else
             {
