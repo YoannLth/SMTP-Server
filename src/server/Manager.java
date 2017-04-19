@@ -68,9 +68,11 @@ public class Manager
 
             case RCPT:
                 System.out.println("RCPT received");
-                if(message_split.length == 2)
+                if(message_split.length == 3)
                 {
-                    response = currentState.launchRCPT(new RCPTEvent(message_split[1]));
+                    String to = message_split[2].substring(1, message_split[2].length()-2);
+                    System.out.println("TO: "+to);
+                    response = currentState.launchRCPT(new RCPTEvent(to));
                 }
                 else
                 {
