@@ -47,7 +47,7 @@ public class DataReceived extends State
         {
             Utils.WriteNewMailToJSON();
             Utils.ResetBufferMemory();
-            answer = "250 OK";
+            answer = "250 OK\r\n";
             nextState = new WaitingMail();
         }
         else
@@ -61,7 +61,7 @@ public class DataReceived extends State
             }
             else if(messageSplit[0].equals("Subject:"))
             {
-                ThreadCommunication.mail.get().setDate(messageReceived.split("Subject: ")[1]);
+                ThreadCommunication.mail.get().setSubject(messageReceived.split("Subject: ")[1]);
             }
             else
             {

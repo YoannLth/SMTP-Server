@@ -64,7 +64,7 @@ public abstract class Utils
         mailJson.put("subject", mail.getSubject());
         mailJson.put("date", mail.getDate());
         mailJson.put("message-id", mail.getMessageID());
-        mailJson.put("balise", MailTagEnum.UNREAD);
+        mailJson.put("balise", MailTagEnum.UNREAD.toString());
         mailJson.put("body", mail.getBody());
         return mailJson;
     }

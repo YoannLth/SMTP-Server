@@ -25,6 +25,7 @@ public class Mail {
     public Mail()
     {
         this.messageID = Integer.toString(((int)Math.random() * 1000));
+        this.expeditorName = this.expeditor = this.receptorName = this.receptor = this.subject = this.date = this.body = "";
     }
     
     public Mail(String expName, String exp, String recName, String rec, String sub, String dat, String msgID, MailTagEnum tag, String body) {
