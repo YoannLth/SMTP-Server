@@ -21,6 +21,11 @@ public class Mail {
     private String messageID;
     private MailTagEnum tag;
     private String body;
+
+    public Mail()
+    {
+        this.messageID = Integer.toString(((int)Math.random() * 1000));
+    }
     
     public Mail(String expName, String exp, String recName, String rec, String sub, String dat, String msgID, MailTagEnum tag, String body) {
         this.expeditorName = expName;
@@ -33,7 +38,57 @@ public class Mail {
         this.tag = tag;
         this.body = body;
     }
-    
+
+    public void setExpeditorName(String expeditorName)
+    {
+        this.expeditorName = expeditorName;
+    }
+
+    public void setExpeditor(String expeditor)
+    {
+        this.expeditor = expeditor;
+    }
+
+    public void setReceptorName(String receptorName)
+    {
+        this.receptorName = receptorName;
+    }
+
+    public void setReceptor(String receptor)
+    {
+        this.receptor = receptor;
+    }
+
+    public void setSubject(String subject)
+    {
+        this.subject = subject;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+    public void setMessageID(String messageID)
+    {
+        this.messageID = messageID;
+    }
+
+    public void setTag(MailTagEnum tag)
+    {
+        this.tag = tag;
+    }
+
+    public void addToBody(String text)
+    {
+        this.body += text;
+    }
+
+    public void setBody(String body)
+    {
+        this.body = body;
+    }
+
     public String getExpeditorName() {
         return expeditorName;
     }

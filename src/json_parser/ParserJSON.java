@@ -19,6 +19,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import utils.MailTagEnum;
+import utils.Utils;
 
 /**
  *
@@ -145,6 +146,44 @@ public abstract class ParserJSON
         {
             Logger.getLogger(ParserJSON.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+
+    public static void addMail(JSONObject mailToAdd)
+    {
+        try
+        {
+            JSONParser parser = new JSONParser();
+
+            FileReader reader = new FileReader("mails.json");
+
+            JSONObject parsedFile = (JSONObject)parser.parse(reader );
+
+            JSONArray mails = (JSONArray)parsedFile.get("mails");
+            Iterator<JSONObject> iterator = mails.iterator();
+            while(iterator.hasNext())
+            {
+                JSONObject mailJSON = iterator.next();
+
+                JSONObject recJSON = (JSONObject) mailJSON.get("to");
+            }
+
+            reader.close();
+
+            mails.add(mailToAdd);
+
+            FileWriter writer = new FileWriter("mails.json");
+
+            writer.write(parsedFile.toJSONString());
+            writer.flush();
+            writer.close();
+
+        } catch (IOException ex)
+        {
+            Logger.getLogger(ParserJSON.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex)
+        {
+            Logger.getLogger(ParserJSON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

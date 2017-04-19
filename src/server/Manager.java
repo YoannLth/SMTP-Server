@@ -56,7 +56,7 @@ public class Manager
                 System.out.println("MAIL received");
                 if(message_split.length == 3)
                 {
-                    String from = message_split[2].substring(1, message_split[2].length()-2);
+                    String from = message_split[2].substring(1, message_split[2].length()-1);
                     System.out.println("FROM: "+from);
                     response = currentState.launchMAIL(new MAILEvent(from));
                 }
@@ -70,7 +70,7 @@ public class Manager
                 System.out.println("RCPT received");
                 if(message_split.length == 3)
                 {
-                    String to = message_split[2].substring(1, message_split[2].length()-2);
+                    String to = message_split[2].substring(1, message_split[2].length()-1);
                     System.out.println("TO: "+to);
                     response = currentState.launchRCPT(new RCPTEvent(to));
                 }

@@ -45,14 +45,27 @@ public class DataReceived extends State
         State nextState = null;
         if(plainText.getText().equals("."))
         {
-            //ADD TO JSON THE MAIL
+            Utils.WriteNewMailToJSON();
             Utils.ResetBufferMemory();
             answer = "250 OK";
             nextState = new WaitingMail();
         }
         else
         {
-            ThreadCommunication.mail.set(ThreadCommunication.mail.get()+plainText.getText());
+            String messageReceived = plainText.getText();
+            String[] messageSplit = messageReceived.split(" ");
+            if(messageSplit[0].equals("Date:"))
+            {
+                ThreadCommunication.mail.get().setDate(messageReceived.split("Date: ")[1]);
+            }
+            else if(messageSplit[0].equals("Subject:"))
+            {
+                ThreadCommunication.mail.get().setDate(messageReceived.split("Subject: ")[1]);
+            }
+            else
+            {
+                ThreadCommunication.mail.get().addToBody(plainText.getText());
+            }
         }
 
         return new StateAnswer(nextState, answer);

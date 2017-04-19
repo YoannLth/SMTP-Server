@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.lang.reflect.Array;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -12,8 +13,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import json_parser.ParserJSON;
 import model.Mail;
 import model.User;
+import org.json.simple.JSONObject;
 import server.ThreadCommunication;
 import states.Closed;
 import states.StateAnswer;
@@ -36,6 +40,35 @@ public abstract class Utils
         return false;
     }
 
+    public static void WriteNewMailToJSON()
+    {
+        for(String recipient : ThreadCommunication.recipients.get())
+        {
+            ThreadCommunication.mail.get().setReceptor(recipient);
+            ParserJSON.addMail(Utils.ConvertMailToJSONObject(ThreadCommunication.mail.get()));
+        }
+    }
+
+    public static JSONObject ConvertMailToJSONObject(Mail mail)
+    {
+        JSONObject mailJson = new JSONObject();
+        JSONObject from = new JSONObject();
+        JSONObject to = new JSONObject();
+        from.put("name", mail.getExpeditorName());
+        from.put("adress", mail.getExpeditor());
+        to.put("name", mail.getReceptorName());
+        to.put("adress", mail.getReceptor());
+
+        mailJson.put("from", from);
+        mailJson.put("to", to);
+        mailJson.put("subject", mail.getSubject());
+        mailJson.put("date", mail.getDate());
+        mailJson.put("message-id", mail.getMessageID());
+        mailJson.put("balise", MailTagEnum.UNREAD);
+        mailJson.put("body", mail.getBody());
+        return mailJson;
+    }
+
     public static StateAnswer GenerateQuitAnswer()
     {
         return new StateAnswer(new Closed(), "221 Bye");
@@ -43,9 +76,9 @@ public abstract class Utils
 
     public static void ResetBufferMemory()
     {
-        ThreadCommunication.recipients.set(new ArrayList<String>());
+        ThreadCommunication.recipients.set(new ArrayList());
         ThreadCommunication.from.set("");
-        ThreadCommunication.mail.set("");
+        ThreadCommunication.mail.set(null);
     }
 
     public static String GenerateHelpMessage()
@@ -55,86 +88,4 @@ public abstract class Utils
         + "STAT - Informations sur la boite\r\n"
         + "...\r\n";
     }
-    
-    public static String CreateStringCommandNotHandleInThisState(String eventName, String stateName)
-    {
-        return "-ERR "+eventName+" is not handled in "+stateName+" state\r\n";
-    }
-    
-    public static int GetTotalNbBytesMails(ArrayList<Mail> mails)
-    {
-        int nbBytes = 0;
-        
-        for(Mail mail : mails)
-        {
-            nbBytes += Utils.GetNbBytesMail(mail);
-        }
-        
-        return nbBytes;
-    }
-    
-    public static int GetNbBytesMail(Mail mail)
-    {
-        return mail.getBody().getBytes().length;
-    }
-
-    public static boolean PassAreEquals(String pass, String password)
-    {
-        return pass.equals(password);
-    }
-    
-    public static boolean PassAreEqualsForUserInList(ArrayList<User> users, String username, String pass)
-    {
-        for(User u : users)
-        {
-            if(u.getName().equals(username) && u.getPass().equals(pass))
-            {
-                return true;
-            }
-        }   
-        return false;
-    }
-    
-    public static String GetCurrentTimeStamp()
-    {
-        Date d = new Date();
-        
-        return Long.toString(d.getTime());
-    }
-    
-    public static boolean PassEncodedAreEquals(String passSend, String passReal, String timestamp)
-    {
-        try
-        {
-            String to_encode = String.format("%s%s", timestamp, passReal);
-            byte[] encoded_pass_bytes =  MessageDigest.getInstance("MD5").digest(to_encode.getBytes());
-            String pass_encoded = Utils.GetHexStringFromByteArray(encoded_pass_bytes);
-            
-            return (pass_encoded.equals(passSend));
-            
-        } catch (NoSuchAlgorithmException ex)
-        {
-            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-    
-    public static String GetHexStringFromByteArray(byte[] byte_array)
-    {
-        StringBuilder hexString = new StringBuilder();
-            
-        for (int i = 0; i < byte_array.length; i++) 
-        {
-            if ((0xff & byte_array[i]) < 0x10) 
-            {
-                hexString.append("0" + Integer.toHexString((0xFF & byte_array[i])));
-            } 
-            else 
-            {
-                hexString.append(Integer.toHexString(0xFF & byte_array[i]));
-            }
-        }
-
-        return hexString.toString();
-}
 }

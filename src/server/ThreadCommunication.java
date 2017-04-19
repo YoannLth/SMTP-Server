@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import model.Mail;
+import states.Authorization;
 import states.StateAnswer;
 import utils.Utils;
 
@@ -30,11 +32,11 @@ public class ThreadCommunication extends Thread{
         }
     };
 
-    public static ThreadLocal<String> mail = new ThreadLocal<String>(){
+    public static ThreadLocal<Mail> mail = new ThreadLocal<Mail>(){
         @Override
-        protected String initialValue()
+        protected Mail initialValue()
         {
-            return "";
+            return null;
         }
     };
 
@@ -57,6 +59,7 @@ public class ThreadCommunication extends Thread{
         this.SetKeepAlive();
         this.SendServerIsReadyMessage();
         this.manager = new Manager();
+        this.currentState = new Authorization();
                
         while (KeepCommunicationAlive()) 
         {
