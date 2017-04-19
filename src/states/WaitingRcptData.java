@@ -30,13 +30,13 @@ public class WaitingRcptData extends State
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
         ThreadCommunication.recipients.get().add(rcpt.getReceipient());
-        return new StateAnswer(null, "250 OK");
+        return new StateAnswer(null, "250 OK\r\n");
     }
 
     @Override
     public StateAnswer launchDATA(DATAEvent data)
     {
-        return new StateAnswer(new DataReceived(), "354 End message with <CR><LF>.<CR><LF>");
+        return new StateAnswer(new DataReceived(), "354 End message with <CR><LF>.<CR><LF>\r\n");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class WaitingRcptData extends State
     public StateAnswer launchRSET(RSETEvent rsets)
     {
         Utils.ResetBufferMemory();
-        return new StateAnswer(new WaitingMail(), "250 OK");
+        return new StateAnswer(new WaitingMail(), "250 OK\r\n");
     }
 
     @Override

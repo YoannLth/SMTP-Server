@@ -75,7 +75,7 @@ public class DataReceived extends State
     public StateAnswer launchRSET(RSETEvent rsets)
     {
         Utils.ResetBufferMemory();
-        return new StateAnswer(new WaitingMail(), "250 OK");
+        return new StateAnswer(new WaitingMail(), "250 OK\r\n");
     }
 
     @Override

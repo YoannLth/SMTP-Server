@@ -34,12 +34,12 @@ public class Authorization extends State
         String answer;
         if(ehlo.getDomainName().equals(domainName))
         {
-            answer = ("250 "+domainName+" Hello");
+            answer = ("250 "+domainName+" Hello\r\n");
             nextState = new WaitingMail();
         }
         else
         {
-            answer = "ERROR";//PUT ERROR CODE INSTEAD OF ERROR
+            answer = "ERROR\r\n";//PUT ERROR CODE INSTEAD OF ERROR
         }
         
         return new StateAnswer(nextState, answer);

@@ -71,7 +71,7 @@ public abstract class Utils
 
     public static StateAnswer GenerateQuitAnswer()
     {
-        return new StateAnswer(new Closed(), "221 Bye");
+        return new StateAnswer(new Closed(), "221 Bye\r\n");
     }
 
     public static void ResetBufferMemory()
