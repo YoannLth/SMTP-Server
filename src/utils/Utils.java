@@ -44,6 +44,7 @@ public abstract class Utils
     {
         for(String recipient : ThreadCommunication.recipients.get())
         {
+            ThreadCommunication.mail.get().setExpeditor(ThreadCommunication.from.get());
             ThreadCommunication.mail.get().setReceptor(recipient);
             ParserJSON.addMail(Utils.ConvertMailToJSONObject(ThreadCommunication.mail.get()));
         }
@@ -67,6 +68,11 @@ public abstract class Utils
         mailJson.put("balise", MailTagEnum.UNREAD.toString());
         mailJson.put("body", mail.getBody());
         return mailJson;
+    }
+
+    public static boolean CheckIfAddressExists(String address)
+    {
+        return ParserJSON.CheckIfAddressExists(address);
     }
 
     public static StateAnswer GenerateQuitAnswer()

@@ -55,23 +55,52 @@ public abstract class ParserJSON
         return null;
     }
 
+    public static boolean CheckIfAddressExists(String address)
+    {
+        try
+        {
+            JSONParser parser = new JSONParser();
+
+            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("infos.json"));
+
+            JSONArray users = (JSONArray)parsedFile.get("users");
+            Iterator<JSONObject> iterator = users.iterator();
+            while(iterator.hasNext())
+            {
+                JSONObject user = iterator.next();
+                if(user.get("user").toString().equals(address))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }catch (IOException ex)
+        {
+            Logger.getLogger(ParserJSON.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex)
+        {
+            Logger.getLogger(ParserJSON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     public static ArrayList<Mail> getMails(String user) {
         ArrayList toRet = new ArrayList<Mail>();
         try
         {
             JSONParser parser = new JSONParser();
-            
+
             JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("mails.json"));
-            
+
             JSONArray mails = (JSONArray)parsedFile.get("mails");
             Iterator<JSONObject> iterator = mails.iterator();
             while(iterator.hasNext())
             {
                 JSONObject mailJSON = iterator.next();
-                
+
                 JSONObject expJSON = (JSONObject) mailJSON.get("from");
                 JSONObject recJSON = (JSONObject) mailJSON.get("to");
-                
+
                 String exp  = (String) expJSON.get("adress");
                 String expName = (String) expJSON.get("name");
                 String recName = (String) recJSON.get("name");
