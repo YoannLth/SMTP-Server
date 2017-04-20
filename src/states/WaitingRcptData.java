@@ -17,13 +17,13 @@ public class WaitingRcptData extends State
     @Override
     public StateAnswer launchEHLO(EHLOEvent ehlo)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("EHLO", this);
     }
 
     @Override
     public StateAnswer launchMAIL(MAILEvent mail)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("MAIL", this);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class WaitingRcptData extends State
     @Override
     public StateAnswer launchPlainText(PlainTextEvent plainText)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("PLAIN TEXT", this);
     }
 
     @Override

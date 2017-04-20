@@ -48,31 +48,31 @@ public class Authorization extends State
     @Override
     public StateAnswer launchMAIL(MAILEvent mail)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("MAIL", this);
     }
 
     @Override
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("RCPT", this);
     }
 
     @Override
     public StateAnswer launchDATA(DATAEvent data)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("DATA", this);
     }
 
     @Override
     public StateAnswer launchPlainText(PlainTextEvent plainText)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("Plain text", this);
     }
 
     @Override
     public StateAnswer launchRSET(RSETEvent rsets)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("RSET", this);
     }
 
     @Override

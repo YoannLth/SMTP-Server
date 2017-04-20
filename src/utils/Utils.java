@@ -20,6 +20,7 @@ import model.User;
 import org.json.simple.JSONObject;
 import server.ThreadCommunication;
 import states.Closed;
+import states.State;
 import states.StateAnswer;
 
 /**
@@ -85,6 +86,11 @@ public abstract class Utils
         ThreadCommunication.recipients.set(new ArrayList());
         ThreadCommunication.from.set("");
         ThreadCommunication.mail.set(new Mail());
+    }
+
+    public static StateAnswer GenerateGivenCommandNotHandlingInGivenStateMessage(String command, State currentState)
+    {
+        return new StateAnswer(null, "550 "+command+" not handled in "+currentState.toString()+" state\r\n");
     }
 
     public static String GenerateHelpMessage()

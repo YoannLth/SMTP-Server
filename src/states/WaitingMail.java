@@ -18,7 +18,7 @@ public class WaitingMail extends State
     @Override
     public StateAnswer launchEHLO(EHLOEvent ehlo)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("EHLO", this);
     }
 
     @Override
@@ -40,19 +40,19 @@ public class WaitingMail extends State
     @Override
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("RCPT", this);
     }
 
     @Override
     public StateAnswer launchDATA(DATAEvent data)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("DATA", this);
     }
 
     @Override
     public StateAnswer launchPlainText(PlainTextEvent plainText)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("PLAIN TEXT", this);
     }
 
     @Override

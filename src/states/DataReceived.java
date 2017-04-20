@@ -17,25 +17,25 @@ public class DataReceived extends State
     @Override
     public StateAnswer launchEHLO(EHLOEvent ehlo)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("EHLO", this);
     }
 
     @Override
     public StateAnswer launchMAIL(MAILEvent mail)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("MAIL", this);
     }
 
     @Override
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("RCPT", this);
     }
 
     @Override
     public StateAnswer launchDATA(DATAEvent data)
     {
-        return null;
+        return Utils.GenerateGivenCommandNotHandlingInGivenStateMessage("DATA", this);
     }
 
     @Override
