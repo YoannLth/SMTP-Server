@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import model.Mail;
 import states.Authorization;
+import states.Closed;
 import states.StateAnswer;
 import utils.Utils;
 
@@ -110,7 +111,7 @@ public class ThreadCommunication extends Thread{
     
     public boolean KeepCommunicationAlive()
     {
-        return true;
+        return !(this.currentState instanceof Closed);
     }
     
     public void SendServerIsReadyMessage()
