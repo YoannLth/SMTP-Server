@@ -8,6 +8,9 @@ package json_parser;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -25,8 +28,26 @@ import utils.Utils;
  *
  * @author yannick
  */
-public abstract class ParserJSON 
+public abstract class ParserJSON
 {
+    private static String infosFile;
+    private static String mailsFile;
+
+    public static void initJSONFiles()
+    {
+        String home = System.getProperty("user.home");
+        if(Files.exists(Paths.get(home + "/Bureau"), LinkOption.NOFOLLOW_LINKS))
+        {
+            ParserJSON.infosFile = System.getProperty("user.home")+"/Bureau/infos.json";
+            ParserJSON.mailsFile = System.getProperty("user.home")+"/Bureau/mails.json";
+        }
+        else
+        {
+            ParserJSON.infosFile = System.getProperty("user.home")+"/Desktop/infos.json";
+            ParserJSON.mailsFile = System.getProperty("user.home")+"/Desktop/mails.json";
+        }
+    }
+
     public static ArrayList<User> getUsers()
     {
         ArrayList<User> toRet = new ArrayList();
@@ -34,7 +55,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
             
-            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("infos.json"));
+            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader(infosFile));
             
             JSONArray users = (JSONArray)parsedFile.get("users");
             Iterator<JSONObject> iterator = users.iterator();
@@ -61,7 +82,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
 
-            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("infos.json"));
+            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader(infosFile));
 
             JSONArray users = (JSONArray)parsedFile.get("users");
             Iterator<JSONObject> iterator = users.iterator();
@@ -90,7 +111,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
 
-            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("mails.json"));
+            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader(mailsFile));
 
             JSONArray mails = (JSONArray)parsedFile.get("mails");
             Iterator<JSONObject> iterator = mails.iterator();
@@ -136,7 +157,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
             
-            FileReader reader = new FileReader("mails.json");
+            FileReader reader = new FileReader(mailsFile);
             
             JSONObject parsedFile = (JSONObject)parser.parse(reader );
             
@@ -160,7 +181,7 @@ public abstract class ParserJSON
             
             reader.close();
             
-            FileWriter writer = new FileWriter("mails.json");
+            FileWriter writer = new FileWriter(mailsFile);
             
             writer.write(parsedFile.toJSONString());
             writer.flush();
@@ -184,7 +205,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
 
-            FileReader reader = new FileReader("mails.json");
+            FileReader reader = new FileReader(mailsFile);
 
             JSONObject parsedFile = (JSONObject)parser.parse(reader );
 
@@ -201,7 +222,7 @@ public abstract class ParserJSON
 
             mails.add(mailToAdd);
 
-            FileWriter writer = new FileWriter("mails.json");
+            FileWriter writer = new FileWriter(mailsFile);
 
             writer.write(parsedFile.toJSONString());
             writer.flush();
@@ -224,7 +245,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
             
-            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader("infos.json"));
+            JSONObject parsedFile = (JSONObject)parser.parse(new FileReader(infosFile));
             
             JSONArray users = (JSONArray)parsedFile.get("users");
             Iterator<JSONObject> iterator = users.iterator();
@@ -255,7 +276,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
             
-            FileReader reader = new FileReader("mails.json");
+            FileReader reader = new FileReader(mailsFile);
             
             JSONObject parsedFile = (JSONObject)parser.parse(reader);
             
@@ -280,7 +301,7 @@ public abstract class ParserJSON
             
             reader.close();
             
-            FileWriter writer = new FileWriter("mails.json");
+            FileWriter writer = new FileWriter(mailsFile);
             
             writer.write(parsedFile.toJSONString());
             writer.flush();
@@ -304,7 +325,7 @@ public abstract class ParserJSON
         {
             JSONParser parser = new JSONParser();
             
-            FileReader reader = new FileReader("mails.json");
+            FileReader reader = new FileReader(mailsFile);
             
             JSONObject parsedFile = (JSONObject)parser.parse(reader);
             
@@ -327,7 +348,7 @@ public abstract class ParserJSON
             
             reader.close();
             
-            FileWriter writer = new FileWriter("mails.json");
+            FileWriter writer = new FileWriter(mailsFile);
             
             writer.write(parsedFile.toJSONString());
             writer.flush();
