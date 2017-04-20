@@ -15,7 +15,6 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         ParserJSON.initJSONFiles();
-        Object tmp = ParserJSON.getUsers();
         SMTPServer smtpServer = new SMTPServer();
         smtpServer.initializeServer();
     }
