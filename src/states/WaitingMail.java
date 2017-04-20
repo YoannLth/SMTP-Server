@@ -24,8 +24,17 @@ public class WaitingMail extends State
     @Override
     public StateAnswer launchMAIL(MAILEvent mail)
     {
-        ThreadCommunication.from.set(mail.getAddress());
-        return new StateAnswer(new WaitingRcptData(), "250 OK\r\n");
+        String answer = "";
+        if(Utils.CheckIfAddressExists(mail.getAddress()))
+        {
+            ThreadCommunication.from.set(mail.getAddress());
+            answer = "250 OK\r\n";
+        }
+        else
+        {
+            answer = "550 No such user\r\n";
+        }
+        return new StateAnswer(new WaitingRcptData(), answer);
     }
 
     @Override

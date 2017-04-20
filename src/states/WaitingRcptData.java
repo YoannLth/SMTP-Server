@@ -29,8 +29,17 @@ public class WaitingRcptData extends State
     @Override
     public StateAnswer launchRCPT(RCPTEvent rcpt)
     {
-        ThreadCommunication.recipients.get().add(rcpt.getReceipient());
-        return new StateAnswer(null, "250 OK\r\n");
+        String answer = "";
+        if(Utils.CheckIfAddressExists(rcpt.getReceipient()))
+        {
+            ThreadCommunication.recipients.get().add(rcpt.getReceipient());
+            answer = "250 OK\r\n";
+        }
+        else
+        {
+            answer = "550 No such user\r\n";
+        }
+        return new StateAnswer(null, answer);
     }
 
     @Override

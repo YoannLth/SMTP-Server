@@ -24,7 +24,7 @@ public class Mail {
 
     public Mail()
     {
-        this.messageID = Integer.toString(((int)Math.random() * 1000));
+        this.messageID = Integer.toString(((int)(Math.random() * 1000)));
         this.expeditorName = this.expeditor = this.receptorName = this.receptor = this.subject = this.date = this.body = "";
     }
     
@@ -48,6 +48,17 @@ public class Mail {
     public void setExpeditor(String expeditor)
     {
         this.expeditor = expeditor;
+        this.expeditorName = "";
+        String name = this.expeditor.split("@")[0];
+        String[] splitName = name.split("\\.");
+        for(int i=0; i<splitName.length; i++)
+        {
+            this.expeditorName += splitName[i].substring(0, 1).toUpperCase() + splitName[i].substring(1, splitName[i].length());
+            if(i<splitName.length-1)
+            {
+                this.expeditorName += " ";
+            }
+        }
     }
 
     public void setReceptorName(String receptorName)
@@ -58,6 +69,17 @@ public class Mail {
     public void setReceptor(String receptor)
     {
         this.receptor = receptor;
+        this.receptorName = "";
+        String name = this.receptor.split("@")[0];
+        String[] splitName = name.split("\\.");
+        for(int i=0; i<splitName.length; i++)
+        {
+            this.receptorName += splitName[i].substring(0, 1).toUpperCase() + splitName[i].substring(1, splitName[i].length());
+            if(i<splitName.length-1)
+            {
+                this.receptorName += " ";
+            }
+        }
     }
 
     public void setSubject(String subject)
@@ -70,24 +92,9 @@ public class Mail {
         this.date = date;
     }
 
-    public void setMessageID(String messageID)
-    {
-        this.messageID = messageID;
-    }
-
-    public void setTag(MailTagEnum tag)
-    {
-        this.tag = tag;
-    }
-
     public void addToBody(String text)
     {
         this.body += text;
-    }
-
-    public void setBody(String body)
-    {
-        this.body = body;
     }
 
     public String getExpeditorName() {

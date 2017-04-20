@@ -53,7 +53,6 @@ public class DataReceived extends State
         else
         {
             String messageReceived = plainText.getText();
-            System.out.println(messageReceived);
             String[] messageSplit = messageReceived.split(" ");
             if(messageSplit[0].equals("Date:"))
             {
